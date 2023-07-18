@@ -4,6 +4,7 @@
 
 Follow the below steps to install this project:
 
+For Local system
 1. Take pull from this branch.
 2. Run ``` npm install ```  This command will install all the packages.
 3. Creat ``` .env ``` file and copy the env-example file
@@ -11,15 +12,14 @@ Follow the below steps to install this project:
 5. Run this script ``` npx sequelize-cli db:migrate ```
 6. Run this script ``` npx sequelize-cli db:seed:all ```
 
+For Docker
+7. Install Docker on your system 
+8. After successful installation of docker run this command ``` docker-compose up ```
 
 <!-- Name -->
-## Name
+# Project Repository
+User-Notes
 
-User-notes
-
-## Description
-
-Nodejs project which includes
 
 1.  [Sequelize](https://sequelize.org/)
 2.  [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
@@ -32,6 +32,14 @@ Nodejs project which includes
 9.  Validations
 10. Seeders
 11. Redis
+
+
+
+# Node API's
+
+### /login 
+
+
 
 <!-- LICENSE -->
 ## License
