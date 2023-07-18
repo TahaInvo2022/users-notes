@@ -37,7 +37,7 @@ User-Notes
 
 # Node API's
 
-### :9000/login Request type: Post
+### (Request type: Post)    :9000/login 
 
 ```
 body: {
@@ -47,6 +47,91 @@ body: {
 ```
 This will return an authentication token. To access all notes api we have to pass this token in headers.
 
+
+### (Request type: Post)    :9000/register 
+
+```
+body: {
+    "name": "fake-name"
+    "email": "test@test.com
+    "password": "password"
+}
+```
+This will create a user in data base. This api will return a object containing user and its authenticated token
+
+
+### (Request type: Get)    :9000/notes 
+
+```
+headers: {
+    "x-access-token": <authentication token>
+} 
+```
+This api will return notes created by authenticated user. In this api redis is also implemented, first time when user get his/her notes it will be set in redis will expire after 30 sec. before 30 sec if user again hit this api then the notes will be get from redis otherwise it will call Database for data.
+
+
+### (Request type: Get)    :9000/notes/:id 
+
+```
+headers: {
+    "x-access-token": <authentication token>
+} 
+
+params : {
+    "id": <Note Id>
+}
+```
+This api will return a specific note related to authenticated user.
+
+
+### (Request type: Post)    :9000/notes
+
+```
+headers: {
+    "x-access-token": <authentication token>
+} 
+
+body: {
+    "type" : "work" -- (this can be only ['work', 'personal'])
+    "description: <description of note>
+}
+```
+This api will create a new note for authenticated user.
+
+
+### (Request type: Put)    :9000/notes/:id
+
+```
+headers: {
+    "x-access-token": <authentication token>
+} 
+
+params: {
+    "id" : <Note Id>
+}
+
+body: {
+    "type" : "work" -- (this can be only ['work', 'personal'])  ===> optional
+    "description: <description of note>   ===> optional
+}
+```
+This api will update a specifc note data of authenticated user.
+
+
+
+### (Request type: Del)    :9000/notes/:id
+
+```
+headers: {
+    "x-access-token": <authentication token>
+} 
+
+params: {
+    "id" : <Note Id>
+}
+
+```
+This api will delete a specifc note data of authenticated user.
 
 
 <!-- LICENSE -->
