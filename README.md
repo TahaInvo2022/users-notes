@@ -33,6 +33,7 @@ User-Notes
 9.  Validations
 10. Seeders
 11. Redis
+12. Docker
 
 
 
