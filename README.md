@@ -10,7 +10,8 @@ For Local system
 3. Creat ``` .env ``` file and copy the env-example file
 4. Then create a database and connect it by setting up the credentials according to your system in the ``` .env ``` file.
 5. Run this script ``` npx sequelize-cli db:migrate ```
-6. Run this script ``` npx sequelize-cli db:seed:all ```
+6. Run this script ``` npx sequelize-cli db:seed:all ```.
+
 For Docker
 1. Install Docker on your system .
 2. After successful installation of docker run this command ``` docker-compose up ``` and all setup will be done by docker.
