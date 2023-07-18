@@ -147,7 +147,7 @@ This project is not licensed from any institute.
 
 Your Email - tahashahid292@invozone.com
 
-Project Link: [https://github.com/TahaInvo2022/user-channel-videos](https://github.com/TahaInvo2022/user-channel-videos)
+Project Link: [https://github.com/TahaInvo2022/users-notes](https://github.com/TahaInvo2022/users-notes)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
