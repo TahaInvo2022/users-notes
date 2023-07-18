@@ -1,0 +1,16 @@
+APP_ENV='local'
+
+APP_URL='http://localhost:8000'
+
+# Database credentials
+DATABASE_USERNAME="root"
+DATABASE_PASSWORD=root-local
+DATABASE_NAME="user_notes"
+DATABASE_HOST="localhost"
+DATABASE_PORT="3306"
+DATABASE_DIALECT="mysql"
+
+API_PORT="9000"
+
+TOKEN_KEY="nodeapipostgrestoken"
+REDIS_PARENT_KEY='User-Notes'

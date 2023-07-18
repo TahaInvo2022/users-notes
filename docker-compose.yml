@@ -1,0 +1,65 @@
+version: "3"
+services:
+  db:
+    image: mysql
+    hostname: db.io
+    environment:
+      MYSQL_ROOT_PASSWORD: "somenodepress" # Set a secure password here
+      MYSQL_DATABASE: "user_notes"
+      MYSQL_USER: "node-user"
+      MYSQL_PASSWORD: "somenodepress"
+    ports:
+      - 3307:3306
+    restart: unless-stopped
+    # Add a healthcheck to wait until the database is accessible before starting the migration service
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD"]
+      timeout: 30s
+      retries: 10
+
+  migration:
+    depends_on:
+      db:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_USERNAME=node-user
+      - DATABASE_PASSWORD=somenodepress
+      - DATABASE_NAME=user_notes
+      - DATABASE_HOST=db.io
+      - DATABASE_PORT=3306
+      - DATABASE_DIALECT=mysql
+      - TOKEN_KEY="nodeapipostgrestoken"
+      - REDIS_PARENT_KEY='User-Notes'
+      - REDIS_HOST='redis.taha'
+    # Use the wait-for-db.sh script to wait for the database to be ready before running the migration commands
+    command: sh -c "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+
+  redis:
+    image: redis:latest
+    hostname: redis.taha
+    ports:
+      - "6378:6379" # Expose the Redis port (adjust if necessary)
+
+  app:
+    depends_on:
+      - migration
+      - redis
+    build:
+      context: .
+    command: npm run start
+    environment:
+      - DATABASE_USERNAME=node-user
+      - DATABASE_PASSWORD=somenodepress
+      - DATABASE_NAME=user_notes
+      - DATABASE_HOST=db.io
+      - DATABASE_PORT=3306
+      - DATABASE_DIALECT=mysql
+      - TOKEN_KEY="nodeapipostgrestoken"
+      - REDIS_PARENT_KEY='User-Notes'
+      - REDIS_HOST=redis.taha     
+      - REDIS_PORT=6379 
+    ports:
+      - 9000:9000
