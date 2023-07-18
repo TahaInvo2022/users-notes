@@ -15,6 +15,7 @@ For Local system
 For Docker
 7. Install Docker on your system 
 8. After successful installation of docker run this command ``` docker-compose up ``` and all setup will be done by docker.
+9. while docker-compose command is running if there is any error then run ``` ctrl+c ``` then ``` docker-compose down ``` and then again run ``` docker-compose up ```
 
 <!-- Name -->
 # Project Repository
