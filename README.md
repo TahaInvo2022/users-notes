@@ -14,7 +14,7 @@ For Local system
 
 For Docker
 7. Install Docker on your system 
-8. After successful installation of docker run this command ``` docker-compose up ```
+8. After successful installation of docker run this command ``` docker-compose up ``` and all setup will be done by docker.
 
 <!-- Name -->
 # Project Repository
@@ -37,7 +37,15 @@ User-Notes
 
 # Node API's
 
-### /login 
+### :9000/login Request type: Post
+
+```
+body: {
+    "email": "test@test.com
+    "password": "password"
+}
+```
+This will return an authentication token. To access all notes api we have to pass this token in headers.
 
 
 
